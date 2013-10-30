@@ -18,6 +18,10 @@ import javax.swing.event.ChangeListener;
 
 public class GameOfLifePanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final GridPanel gridPanel;
 	private JButton playButton;
 	private JButton nextButton;
@@ -31,11 +35,11 @@ public class GameOfLifePanel extends JPanel {
 		add(buttonPanel);
 		gridPanel = new GridPanel();
 		add(gridPanel);
-		setPreferredSize(new Dimension(600,600));
+		setPreferredSize(new Dimension(600, 600));
 	}
-	
+
 	private void createButtonPanel() {
-		buttonPanel=new JPanel();
+		buttonPanel = new JPanel();
 		createPlayButton();
 		buttonPanel.add(playButton);
 		createNextButton();
@@ -52,11 +56,10 @@ public class GameOfLifePanel extends JPanel {
 		playButton = new JButton("Play");
 		class PlayButtonListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				if (playButton.getText().equals("Play")){
+				if (playButton.getText().equals("Play")) {
 					gridPanel.animateStart();
 					playButton.setText("Pause");
-				}
-				else if (playButton.getText().equals("Pause")){
+				} else if (playButton.getText().equals("Pause")) {
 					gridPanel.animateStop();
 					playButton.setText("Play");
 				}
@@ -66,7 +69,7 @@ public class GameOfLifePanel extends JPanel {
 	}
 
 	private void createNextButton() {
-		nextButton=new JButton();
+		nextButton = new JButton();
 		nextButton.setText("Next");
 		class NextButtonListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
@@ -77,7 +80,7 @@ public class GameOfLifePanel extends JPanel {
 	}
 
 	private void createResetButton() {
-		resetButton=new JButton();
+		resetButton = new JButton();
 		resetButton.setText("Reset");
 		class ResetButtonListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
@@ -89,32 +92,32 @@ public class GameOfLifePanel extends JPanel {
 	}
 
 	private void createSpeedSlider() {
-		speedSlider=new JSlider();
+		speedSlider = new JSlider(5,50);
+		speedSlider.setInverted(true);
 		class SpeedSliderListener implements ChangeListener {
 			public void stateChanged(ChangeEvent e) {
 				if (!speedSlider.getValueIsAdjusting())
-					gridPanel.setInterval(3000/speedSlider.getValue());
+					gridPanel.setInterval(speedSlider.getValue());
 			}
 		}
 		speedSlider.addChangeListener(new SpeedSliderListener());
-		
+
 		Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
-		labelTable.put( new Integer( 10 ), new JLabel("Slow") );
-		labelTable.put( new Integer( 150 ), new JLabel("Fast") );
-		speedSlider.setLabelTable( labelTable );
-		
+		labelTable.put(new Integer(45), new JLabel("Slow"));
+		labelTable.put(new Integer(10), new JLabel("Fast"));
+		speedSlider.setLabelTable(labelTable);
+		speedSlider.setPaintLabels(true);
 	}
 
 	private void createSaveButton() {
-		saveButton=new JButton();
+		saveButton = new JButton();
 		saveButton.setText("Save");
 		class SaveButtonListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				if (saveButton.getText().equals("Save")){
+				if (saveButton.getText().equals("Save")) {
 					gridPanel.saveCells();
 					saveButton.setText("Load");
-				}
-				else if (saveButton.getText().equals("Load")){
+				} else if (saveButton.getText().equals("Load")) {
 					gridPanel.loadCells();
 					saveButton.setText("Save");
 				}

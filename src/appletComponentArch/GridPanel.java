@@ -19,6 +19,10 @@ import javax.swing.Timer;
 
 public class GridPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Timer t;
 	private int interval = 30;
 	private Grid grid1;
@@ -96,9 +100,7 @@ public class GridPanel extends JPanel {
 	}
 
 	public void setInterval(int interval) {
-		t.stop();
 		t.setDelay(interval);
-		t.start();
 	}
 
 	private class TimerListener implements ActionListener {

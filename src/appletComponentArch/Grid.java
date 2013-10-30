@@ -51,6 +51,7 @@ public class Grid {
 		for (int i=0; i<numCells; i++){
 			for (int j=0; j<numCells; j++){
 				cells[i][j]=cellsSaved[i][j];
+				cellsNext[i][j]=0;
 			}
 		}
 	}
@@ -93,6 +94,7 @@ public class Grid {
 		for (int i=0; i<numCells; i++){
 			for (int j=0; j<numCells; j++){
 				cells[i][j]=0;
+				cellsNext[i][j]=0;
 			}
 		}
 	}
